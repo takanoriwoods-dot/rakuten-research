@@ -29,6 +29,8 @@ def search_items(app_id: str, keyword: str) -> list[dict]:
         "hits": 30,  # 1ページあたりの最大件数
     }
     response = requests.get(API_URL, params=params, timeout=10)
+    if not response.ok:
+        print(f"APIエラー詳細: {response.text}")
     response.raise_for_status()
     data = response.json()
 
